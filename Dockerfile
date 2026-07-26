@@ -13,11 +13,12 @@ COPY pyproject.toml README.md ./
 COPY app ./app
 COPY alembic.ini ./
 COPY alembic ./alembic
+COPY scripts ./scripts
 
-RUN pip install --upgrade pip && pip install . && mkdir -p /home/app && chown -R app:app /home/app
+RUN pip install --upgrade pip && pip install . && chmod +x ./scripts/start-render.sh && mkdir -p /home/app && chown -R app:app /home/app
 
 USER app
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "fastapi run app/main.py --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["sh", "./scripts/start-render.sh"]

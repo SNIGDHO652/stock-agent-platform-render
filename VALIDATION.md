@@ -15,3 +15,5 @@
 Security note: `API_KEY` protects external `/v1/*` API usage. The public UI calls
 same-origin `/web/*` endpoints instead of sending the key to the browser. For a
 public production product, add login, CAPTCHA, or per-user quotas.
+- Startup script added: `scripts/start-render.sh`
+- Render dockerCommand simplified: `sh ./scripts/start-render.sh`

@@ -78,3 +78,20 @@ Example external API call:
 curl -H "X-API-Key: YOUR_RENDER_API_KEY" \
   "https://YOUR-APP.onrender.com/v1/companies/search?q=Microsoft"
 ```
+
+## Startup command fix
+
+Render Docker services now call:
+
+```text
+sh ./scripts/start-render.sh
+```
+
+The script runs:
+
+```text
+alembic upgrade head
+fastapi run app/main.py --host 0.0.0.0 --port "$PORT"
+```
+
+This avoids Render treating a long inline `alembic ... && fastapi ...` string as a single executable.
