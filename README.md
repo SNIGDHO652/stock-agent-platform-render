@@ -11,7 +11,7 @@ This edition removes Celery workers and Redis so it can run on Render free resou
 
 > Educational research only. Ratings and forecasts are not personalised investment advice and do not guarantee future performance.
 
-## What changed from the scalable version
+## Difference from scalable version
 
 | Area | Scalable version | Free Render version |
 |---|---|---|
@@ -22,7 +22,7 @@ This edition removes Celery workers and Redis so it can run on Render free resou
 | Render services | API + worker + Postgres + Key Value | API + Postgres |
 | Cost goal | Production-like | Free demo |
 
-## Features retained
+## Features
 
 - FastAPI API and OpenAPI docs
 - LangGraph workflow
