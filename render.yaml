@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: stock-agent-api-free
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: sh -c "alembic upgrade head && fastapi run app/main.py --host 0.0.0.0 --port ${PORT:-10000}"
+    healthCheckPath: /health/live
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: AUTO_CREATE_SCHEMA
+        value: "false"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: stock-agent-db-free
+          property: connectionString
+      - key: API_KEY
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ENABLE_CREWAI_DEFAULT
+        value: "true"
+      - key: MARKET_DATA_PERIOD
+        value: 5y
+      - key: BENCHMARK_TICKER
+        value: SPY
+      - key: ANALYSIS_CACHE_TTL_SECONDS
+        value: "900"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "30"
+      - key: JOB_LEASE_SECONDS
+        value: "1800"
+      - key: CORS_ORIGINS
+        value: '["https://your-frontend-domain.com"]'
+
+databases:
+  - name: stock-agent-db-free
+    databaseName: stock_agent
+    user: stock_agent
+    plan: free
+    postgresMajorVersion: "17"

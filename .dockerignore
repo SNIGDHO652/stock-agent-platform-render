@@ -1,0 +1,17 @@
+.env
+.venv
+.git
+.gitignore
+.pytest_cache
+.mypy_cache
+.ruff_cache
+__pycache__
+*.pyc
+dist
+build
+*.egg-info
+htmlcov
+.coverage
+docker-compose.yml
+deploy
+tests
