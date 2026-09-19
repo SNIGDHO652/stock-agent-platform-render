@@ -38,19 +38,3 @@ Open:
 http://localhost:8000/docs
 http://localhost:8000/health/ready
 ```
-
-## API example
-
-```bash
-curl -H "X-API-Key: YOUR_API_KEY" \
-  "https://stock-agent-api-free.onrender.com/v1/companies/search?q=Microsoft"
-```
-
-```bash
-curl -X POST "https://stock-agent-api-free.onrender.com/v1/analyses" \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: YOUR_API_KEY" \
-  -H "Idempotency-Key: microsoft-demo-001" \
-  -d '{"company_name":"Microsoft","horizons":[5,20,60],"include_ai_narrative":true}'
-```
-
